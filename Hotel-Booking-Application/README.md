@@ -1,11 +1,12 @@
-# Hotel Booking Application
+# Hotel Booking Application - Booking
 
 A simple starter project for practicing Git branching and merge conflict resolution.
 
 ## Features
 - View available hotel rooms
 - Search rooms by location
-- Submit a room booking request (demo only; no backend/database)
+- Submit a demo booking request with guest details and stay dates
+- Show an on-page confirmation; no details are sent to a server or stored
 - Responsive, plain HTML/CSS/JavaScript interface
 
 ## Run locally
