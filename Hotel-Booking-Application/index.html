@@ -26,12 +26,12 @@
       </div>
     </section>
 
-    <section class="search-panel" aria-label="Search rooms">
-      <label>Destination<input id="locationSearch" type="text" placeholder="Try Hyderabad"></label>
+    <form id="searchForm" class="search-panel" aria-label="Search rooms">
+      <label>Destination<input id="locationSearch" type="text" placeholder="Try Hyderabad" autocomplete="address-level2" aria-describedby="searchMessage"></label>
       <label>Check-in<input id="checkin" type="date"></label>
       <label>Check-out<input id="checkout" type="date"></label>
-      <button id="searchButton" class="primary-button" type="button">Search rooms</button>
-    </section>
+      <button id="searchButton" class="primary-button" type="submit">Search rooms</button>
+    </form>
 
     <section id="rooms" class="section">
       <div class="section-heading"><div><p class="eyebrow">HANDPICKED FOR YOU</p><h2>Rooms worth staying for</h2></div><p>Choose the space that suits your trip.</p></div>

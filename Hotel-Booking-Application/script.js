@@ -1,8 +1,46 @@
 const locationSearch = document.querySelector("#locationSearch");
 const roomCards = [...document.querySelectorAll(".room-card")];
 const searchMessage = document.querySelector("#searchMessage");
+const searchForm = document.querySelector("#searchForm");
+const checkin = document.querySelector("#checkin");
+const checkout = document.querySelector("#checkout");
 
-document.querySelector("#searchButton").addEventListener("click", () => {
+function formatLocalDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+const today = formatLocalDate(new Date());
+checkin.min = today;
+checkout.min = today;
+
+checkin.addEventListener("change", () => {
+  checkout.min = checkin.value || today;
+  checkout.setCustomValidity("");
+});
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  checkin.setCustomValidity("");
+  checkout.setCustomValidity("");
+
+  if (Boolean(checkin.value) !== Boolean(checkout.value)) {
+    const missingDate = checkin.value ? checkout : checkin;
+    missingDate.setCustomValidity("Enter both dates or leave both dates empty.");
+    missingDate.reportValidity();
+    searchMessage.textContent = "Enter both travel dates, or leave both blank.";
+    return;
+  }
+
+  if (checkin.value && checkout.value <= checkin.value) {
+    checkout.setCustomValidity("Check-out must be after check-in.");
+    checkout.reportValidity();
+    searchMessage.textContent = "Check-out must be after check-in.";
+    return;
+  }
+
   const query = locationSearch.value.trim().toLowerCase();
   let visible = 0;
   roomCards.forEach((card) => {
