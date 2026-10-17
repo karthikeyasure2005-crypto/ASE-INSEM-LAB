@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StayEase | Hotel Booking</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">StayEase<span>.</span></a>
+    <nav><a href="#rooms">Rooms</a><a href="#booking">Book a stay</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR NEXT STAY STARTS HERE</p>
+        <h1>Find a place<br>to <span>feel at home.</span></h1>
+        <p class="intro">Discover comfortable stays for weekend escapes, work trips, and everything in between.</p>
+        <a class="primary-button" href="#rooms">Explore rooms</a>
+      </div>
+      <div class="hero-card">
+        <div class="hero-image" role="img" aria-label="Illustration of a hotel building"></div>
+        <div class="hero-card-info"><div><strong>Thoughtful stays</strong><small>Comfort, convenience, and care</small></div><span class="rating">★ 4.8</span></div>
+      </div>
+    </section>
+
+    <section class="search-panel" aria-label="Search rooms">
+      <label>Destination<input id="locationSearch" type="text" placeholder="Try Hyderabad"></label>
+      <label>Check-in<input id="checkin" type="date"></label>
+      <label>Check-out<input id="checkout" type="date"></label>
+      <button id="searchButton" class="primary-button" type="button">Search rooms</button>
+    </section>
+
+    <section id="rooms" class="section">
+      <div class="section-heading"><div><p class="eyebrow">HANDPICKED FOR YOU</p><h2>Rooms worth staying for</h2></div><p>Choose the space that suits your trip.</p></div>
+      <p id="searchMessage" class="message" aria-live="polite"></p>
+      <div class="room-grid" id="roomGrid">
+        <article class="room-card" data-location="hyderabad vijayawada guntur">
+          <div class="room-art art-one"><span>DELUXE</span></div>
+          <div class="room-content"><div class="room-title"><h3>Deluxe Comfort Room</h3><span class="stars">★★★★★</span></div><p>King bed · Wi-Fi · City view</p><div class="room-bottom"><strong>₹2,499 <small>/ night</small></strong><button class="book-button" data-room="Deluxe Comfort Room">Book room</button></div></div>
+        </article>
+        <article class="room-card" data-location="hyderabad vizag bengaluru">
+          <div class="room-art art-two"><span>PREMIUM</span></div>
+          <div class="room-content"><div class="room-title"><h3>Premium Suite</h3><span class="stars">★★★★★</span></div><p>King bed · Lounge · Breakfast</p><div class="room-bottom"><strong>₹4,299 <small>/ night</small></strong><button class="book-button" data-room="Premium Suite">Book room</button></div></div>
+        </article>
+        <article class="room-card" data-location="guntur vijayawada vizag">
+          <div class="room-art art-three"><span>FAMILY</span></div>
+          <div class="room-content"><div class="room-title"><h3>Family Garden Room</h3><span class="stars">★★★★☆</span></div><p>Two beds · Garden view · Wi-Fi</p><div class="room-bottom"><strong>₹3,199 <small>/ night</small></strong><button class="book-button" data-room="Family Garden Room">Book room</button></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="booking" class="booking-section">
+      <div><p class="eyebrow">MAKE IT YOURS</p><h2>Book your next stay</h2><p>Fill in your details to create a demo booking request.</p></div>
+      <form id="bookingForm" class="booking-form">
+        <label>Full name<input id="guestName" required placeholder="Your name"></label>
+        <label>Email address<input id="guestEmail" type="email" required placeholder="you@example.com"></label>
+        <label>Room<select id="roomChoice" required><option value="">Select a room</option><option>Deluxe Comfort Room</option><option>Premium Suite</option><option>Family Garden Room</option></select></label>
+        <label>Guests<select id="guestCount"><option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option></select></label>
+        <button class="primary-button full-width" type="submit">Confirm demo booking</button>
+        <p id="bookingMessage" class="message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#">StayEase<span>.</span></a><p>Demo project for Git branching practice · No real reservations are made.</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
