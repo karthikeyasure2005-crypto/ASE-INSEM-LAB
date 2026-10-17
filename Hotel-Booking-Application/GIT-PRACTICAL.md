@@ -1,82 +1,77 @@
-# Git Branching and Merge Conflict Practical
+# Git branching and merge-conflict practical
 
-Repository: `Hotel-Booking-Application`
+This project is inside the `Hotel-Booking-Application` folder of the
+`ASE-INSEM-LAB` repository. Run Git commands from the repository root.
 
-## 1. Clone
+## Clone and inspect
+
 ```bash
-git clone https://github.com/YOUR-USERNAME/Hotel-Booking-Application.git
-cd Hotel-Booking-Application
+git clone https://github.com/karthikeyasure2005-crypto/ASE-INSEM-LAB.git
+cd ASE-INSEM-LAB
+git status
+git branch -a
 ```
 
-If the GitHub repository is empty, copy these project files into the cloned folder, then:
-```bash
-git add .
-git commit -m "Add hotel booking starter application"
-git push -u origin main
-```
+Open `Hotel-Booking-Application/index.html` in a browser to run the demo.
 
-## 2. Create develop
+## Branch workflow
+
+Use `main` for the stable version and `develop` for integration. Create each
+feature branch from `develop`:
+
 ```bash
 git switch main
 git switch -c develop
-git push -u origin develop
-```
-
-## 3. Create feature branches from develop
-```bash
-git switch develop
 git switch -c feature/room-search
-```
-Make a change to `README.md` or `script.js`, then:
-```bash
-git add .
-git commit -m "Add room search feature"
-git push -u origin feature/room-search
-```
-
-Create the second branch:
-```bash
+# Make and commit the room-search changes.
 git switch develop
 git switch -c feature/booking
-```
-Make a booking-related change, then:
-```bash
-git add .
-git commit -m "Add booking feature"
-git push -u origin feature/booking
+# Make and commit the booking changes.
 ```
 
-## 4. Merge features into develop
+Merge each completed feature into `develop`:
+
 ```bash
 git switch develop
-git merge feature/room-search
-git merge feature/booking
-git push origin develop
+git merge --no-ff feature/room-search
+git merge --no-ff feature/booking
 ```
 
-## 5. Demonstrate a conflict safely
-Both feature branches must start from the same base commit and edit the same lines in the same file differently. For example, edit the same heading in `README.md` in each feature branch, commit both edits, and then merge one branch into `develop` followed by the other. Git should mark the conflicting lines with `<<<<<<<`, `=======`, and `>>>>>>>`.
+## Demonstrate and resolve a conflict
 
-Resolve the file by keeping both features and deleting all conflict markers. Then:
+For a genuine README conflict, start both feature branches at the same
+`develop` commit and independently replace the same original README heading
+with different text. Commit each edit. Merge one branch into `develop`, then
+merge the other. Git will report a content conflict because both commits
+changed the same line.
+
+Inspect the conflicted file and preserve both descriptions while removing the
+`<<<<<<<`, `=======`, and `>>>>>>>` markers. Then finish the merge:
+
 ```bash
-git add README.md
-git commit -m "Resolve merge conflict"
-git push origin develop
+git add Hotel-Booking-Application/README.md
+git commit -m "Resolve merge conflict between room search and booking"
 ```
 
-If `develop` already contains a feature branch's changes, create fresh conflict-demo branches from a common commit or use a separate file for the exercise.
+The completed practical in this repository follows that workflow. To repeat
+the demonstration, use fresh branches from a common commit rather than
+rewriting the completed feature history.
 
-## 6. Merge develop into main
-```bash
-git switch main
-git merge develop
-git push origin main
-```
+## Verify and publish
 
-## 7. Verify
 ```bash
+git status
 git branch -a
 git log --oneline --graph --all
+git push -u origin develop
+git push -u origin main
 ```
 
-Note: This is a front-end demonstration only. Booking requests are not sent to a server and no database is configured.
+Push feature branches with their upstreams as well when publishing the
+exercise. Never force-push to resolve a conflict.
+
+## Booking demo limitation
+
+Room search filters sample data and validates dates; it does not check live
+availability. The booking form displays a confirmation in the browser only.
+There is no backend or database, and no real reservation is made.
